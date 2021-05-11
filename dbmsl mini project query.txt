@@ -1,0 +1,37 @@
+--creating a database
+create database biobubble;
+
+--creating tables
+create table players(
+p_id varchar(10) primary key not null,
+name varchar(20) not null,
+nationality varchar(20) not null,
+type_of_play varchar(20) not null,
+result varchar(1) not null);
+
+create table officials(
+p_id varchar(10) primary key not null,
+nationality varchar(20) not null,
+name varchar(20) not null,
+role varchar(20) not null,
+result varchar(1) not null);
+
+create table person_id(p_id varchar(10) primary key not null);
+
+create table quarantine(
+p_id varchar(10),
+duration varchar(10) not null,
+result1 varchar(1) not null,
+result2 varchar(1) not null,
+result3 varchar(1) not null,
+foreign key (p_id) references person_id(p_id));
+	
+create table team(
+p_id varchar(10),
+teamname varchar(20),
+foreign key (p_id) references person_id(p_id)
+foreign key (teamname) references team_venue(teamname));
+
+create table team_venue(
+teamname varchar(30) primary key not null,
+venue varchar(20));
